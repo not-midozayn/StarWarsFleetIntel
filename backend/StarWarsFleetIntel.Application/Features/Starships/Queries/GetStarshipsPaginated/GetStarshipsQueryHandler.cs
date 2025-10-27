@@ -9,6 +9,7 @@ using MediatR;
 using Microsoft.Extensions.Logging;
 using StarWarsFleetIntel.Application.Common.Wrappers;
 using StarWarsFleetIntel.Application.Interfaces;
+using StarWarsFleetIntel.Domain.Entities;
 
 namespace StarWarsFleetIntel.Application.Features.Starships.Queries.GetStarshipsPaginated
 {
@@ -17,15 +18,19 @@ namespace StarWarsFleetIntel.Application.Features.Starships.Queries.GetStarships
         private readonly ISwapiClient _swapiClient;
         private readonly IMapper _mapper;
         private readonly ILogger<GetStarshipsQueryHandler> _logger;
+        private readonly ICurrencyConverter _currencyConverter;
 
         public GetStarshipsQueryHandler(
             ISwapiClient swapiClient,
             IMapper mapper,
-            ILogger<GetStarshipsQueryHandler> logger)
+            ILogger<GetStarshipsQueryHandler> logger,
+            ICurrencyConverter currencyConverter
+)
         {
             _swapiClient = swapiClient;
             _mapper = mapper;
             _logger = logger;
+            _currencyConverter = currencyConverter;
         }
 
         public async Task<Result<PaginatedResult<GetStarshipResponse>>> Handle(GetStarshipsQuery request, CancellationToken cancellationToken)
@@ -44,8 +49,27 @@ namespace StarWarsFleetIntel.Application.Features.Starships.Queries.GetStarships
                 {
                     return Result<PaginatedResult<GetStarshipResponse>>.Failure(result.Message);
                 }
-
                 var dtos = result.Data!.Items.Select(_mapper.Map<GetStarshipResponse>).ToList();
+
+                if (request.TargetCurrency.HasValue)
+                {
+                    _logger.LogInformation("Converting cost to {Currency}", request.TargetCurrency.Value);
+
+                    dtos.ForEach(s =>
+                    {
+                        if (decimal.TryParse(s.CostInCredits, out var costInCredits))
+                        {
+                            s.CostConverted = _currencyConverter.Convert(
+                                costInCredits,
+                                request.TargetCurrency.Value);
+                        }
+                        else
+                        {
+                            s.CostConverted = null;
+                        }
+                        s.Currency = _currencyConverter.GetCurrencySymbol(request.TargetCurrency.Value);
+                    });
+                }
 
                 var paginatedResult = new PaginatedResult<GetStarshipResponse>
                 {

@@ -77,7 +77,7 @@ namespace StarWarsFleetIntel.API.Controllers
         [ProducesResponseType(typeof(Result<PaginatedResult<GetStarshipResponse>>), StatusCodes.Status200OK)]
         public async Task<ActionResult<Result<PaginatedResult<GetStarshipResponse>>>> GetStarships(
             [FromQuery] int page = 1,
-            [FromQuery] int pageSize = 10)
+            [FromQuery] Currency? currency = null)
         {
             using (_logger.BeginScope(new Dictionary<string, object>
             {
@@ -90,7 +90,7 @@ namespace StarWarsFleetIntel.API.Controllers
                 var query = new GetStarshipsQuery
                 {
                     Page = page,
-                    PageSize = pageSize
+                    TargetCurrency = currency
                 };
 
                 var result = await _mediator.Send(query);
