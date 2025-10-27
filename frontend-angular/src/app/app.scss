@@ -1,0 +1,25 @@
+@use '../styles/abstracts' as *;
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.main {
+  flex: 1;
+  padding: $spacing-xl 0;
+}
+
+.footer {
+  background-color: $color-secondary;
+  border-top: 2px solid $color-primary;
+  padding: $spacing-lg 0;
+  margin-top: $spacing-xxl;
+
+  &__text {
+    text-align: center;
+    color: $color-text-muted;
+    margin: 0;
+  }
+}

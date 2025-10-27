@@ -30,8 +30,12 @@
               }
             ],
             "styles": [
-              "src/styles.scss"
-            ]
+              "src/styles/main.scss"
+            ],
+            "stylePreprocessorOptions": {
+              "includePaths": ["src/styles"]
+            },
+            "poll": 1000
           },
           "configurations": {
             "production": {
@@ -87,9 +91,12 @@
                 "input": "public"
               }
             ],
-            "styles": [
-              "src/styles.scss"
-            ]
+           "styles": [
+              "src/styles/main.scss"
+            ],
+            "stylePreprocessorOptions": {
+              "includePaths": ["src/styles"]
+            }
           }
         }
       }
