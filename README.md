@@ -22,7 +22,7 @@ dotnet restore
 dotnet test
 ```
 
-1. **Run the API**
+4. **Run the API**
 ```bash
 cd StarWarsFleetIntel.API
 dotnet run
@@ -57,8 +57,8 @@ npm start
 
 1. **Access the application**
 ```
-```
 Open your browser and navigate to `http://localhost:4200`
+```
 
 
 ### Why Clean Architecture?
