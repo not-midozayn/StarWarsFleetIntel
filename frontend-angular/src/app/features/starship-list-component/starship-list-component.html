@@ -1,0 +1,102 @@
+<div class="container starship-list">
+  <!-- Header -->
+  <header class="starship-list__header">
+    <h1>Starwars ships</h1>
+    <p class="text--muted">Browse and analyze starships from across the galaxy</p>
+  </header>
+
+  <!-- Filters Section -->
+  <section class="starship-list__filters">
+    <h2 class="starship-list__section-title">Filters</h2>
+    
+    <div class="starship-list__filter-group">
+      <!-- Search Bar -->
+      <div class="starship-list__filter-item">
+        <app-search-bar
+          placeholder="Search by name, model, or manufacturer..."
+          (search)="onSearch($event)"
+        />
+      </div>
+
+      <!-- Currency Selector -->
+      <div class="starship-list__filter-item">
+        <label class="form__label" for="currency">Currency</label>
+        <select
+          id="currency"
+          class="form__select"
+          [value]="selectedCurrency() || ''"
+          (change)="onCurrencyChange($any($event.target).value)"
+        >
+          <option value="">Star Wars Credits (Default)</option>
+          @for (currency of currencies; track currency) {
+            <option [value]="currency" [selected]="selectedCurrency() === currency">
+              {{ currency }}
+            </option>
+          }
+        </select>
+      </div>
+    </div>
+
+    <!-- Modifications -->
+    <div class="starship-list__modifications">
+      <label class="form__label">Special Modifications</label>
+      <div class="starship-list__modification-chips">
+        @for (mod of modifications; track mod) {
+          <label class="form__checkbox">
+            <input
+              type="checkbox"
+              [checked]="isModificationSelected(mod)"
+              (change)="onModificationToggle(mod)"
+            />
+            <span>{{ mod }}</span>
+          </label>
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Loading State -->
+  @if (loading()) {
+    <app-loading-spinner message="Loading starships from the fleet database..." />
+  }
+
+  <!-- Error State -->
+  @if (error()) {
+    <div class="starship-list__error">
+      <p class="text--error">{{ error() }}</p>
+      <button class="btn btn--primary" (click)="onPageChange(pagination().currentPage)">
+        Retry
+      </button>
+    </div>
+  }
+
+  <!-- Starships Grid -->
+  @if (!loading() && !error()) {
+    @if (starships().length > 0) {
+      <div class="starship-list__grid grid grid--3-cols">
+        @for (starship of starships(); track starship.name) {
+          <app-starship-card
+            [starship]="starship"
+            [currency]="selectedCurrency()"
+            [modifications]="selectedModifications()"
+          />
+        }
+      </div>
+
+      <!-- Pagination -->
+      <app-pagination
+        [currentPage]="pagination().currentPage"
+        [totalPages]="pagination().totalPages"
+        [hasNext]="pagination().hasNext"
+        [hasPrevious]="pagination().hasPreviousPage"
+        (pageChange)="onPageChange($event)"
+        (nextPage)="onNextPage()"
+        (previousPage)="onPreviousPage()"
+      />
+    } @else {
+      <div class="starship-list__empty">
+        <p>No starships found matching your search criteria.</p>
+      </div>
+    }
+  }
+</div>

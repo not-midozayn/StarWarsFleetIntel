@@ -1,0 +1,157 @@
+<div class="container starship-detail">
+  <!-- Back Button -->
+  <button class="btn btn--secondary" (click)="goBack()">
+    ← Back to Fleet
+  </button>
+
+  <!-- Loading State -->
+  @if (loading()) {
+    <app-loading-spinner message="Loading starship details..." />
+  }
+
+  <!-- Error State -->
+  @if (error()) {
+    <div class="starship-detail__error">
+      <p class="text--error">{{ error() }}</p>
+      <button class="btn btn--primary" (click)="goBack()">
+        Return to Fleet
+      </button>
+    </div>
+  }
+
+  <!-- Starship Details -->
+  @if (starship() && !loading()) {
+    <div class="starship-detail__container">
+      <!-- Header -->
+      <header class="starship-detail__header">
+        <h1 class="starship-detail__name">{{ starship()!.name }}</h1>
+        <p class="starship-detail__model">{{ starship()!.model }}</p>
+        <p class="text--muted">{{ starship()!.manufacturer }}</p>
+      </header>
+
+      <!-- Content Grid -->
+      <div class="starship-detail__content">
+        <!-- Main Specifications -->
+        <section class="starship-detail__section">
+          <h2 class="starship-detail__section-title">Specifications</h2>
+          
+          <div class="starship-detail__specs">
+            <div class="starship-detail__spec">
+              <div class="starship-detail__spec-label">Class</div>
+              <div class="starship-detail__spec-value">{{ starship()!.starshipClass }}</div>
+            </div>
+
+            <div class="starship-detail__spec">
+              <div class="starship-detail__spec-label">Cost</div>
+              <div class="starship-detail__spec-value">
+                @if (starship()!.costConverted && starship()!.currency) {
+                  {{ starship()!.costConverted!.toLocaleString() }} {{ starship()!.currency }}
+                } @else {
+                  {{ starship()!.costInCredits }} Credits
+                }
+              </div>
+            </div>
+
+            <div class="starship-detail__spec">
+              <div class="starship-detail__spec-label">Length</div>
+              <div class="starship-detail__spec-value">{{ starship()!.length }} meters</div>
+            </div>
+
+            <div class="starship-detail__spec">
+              <div class="starship-detail__spec-label">Max Speed</div>
+              <div class="starship-detail__spec-value">{{ starship()!.maxAtmospheringSpeed }}</div>
+            </div>
+
+            <div class="starship-detail__spec">
+              <div class="starship-detail__spec-label">Crew</div>
+              <div class="starship-detail__spec-value">{{ starship()!.crew }}</div>
+            </div>
+
+            <div class="starship-detail__spec">
+              <div class="starship-detail__spec-label">Passengers</div>
+              <div class="starship-detail__spec-value">{{ starship()!.passengers }}</div>
+            </div>
+
+            <div class="starship-detail__spec">
+              <div class="starship-detail__spec-label">Cargo Capacity</div>
+              <div class="starship-detail__spec-value">{{ starship()!.cargoCapacity }}</div>
+            </div>
+
+            <div class="starship-detail__spec">
+              <div class="starship-detail__spec-label">Consumables</div>
+              <div class="starship-detail__spec-value">{{ starship()!.consumables }}</div>
+            </div>
+
+            <div class="starship-detail__spec">
+              <div class="starship-detail__spec-label">Hyperdrive Rating</div>
+              <div class="starship-detail__spec-value">{{ starship()!.hyperdriveRating }}</div>
+            </div>
+
+            <div class="starship-detail__spec">
+              <div class="starship-detail__spec-label">MGLT</div>
+              <div class="starship-detail__spec-value">{{ starship()!.mglt }}</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Sidebar -->
+        <aside class="starship-detail__sidebar">
+          <!-- Special Modifications -->
+          @if (starship()!.specialModifications && starship()!.specialModifications.length > 0) {
+            <section class="starship-detail__section">
+              <h2 class="starship-detail__section-title">Special Modifications</h2>
+              <ul class="starship-detail__modifications">
+                @for (mod of starship()!.specialModifications; track mod) {
+                  <li>{{ mod }}</li>
+                }
+              </ul>
+            </section>
+          }
+
+          <!-- Pre-flight Check Results -->
+          @if (starship()!.preFlightCheck) {
+            <section class="starship-detail__section starship-detail__preflight"
+                     [class.starship-detail__preflight--passed]="starship()!.preFlightCheck!.passed"
+                     [class.starship-detail__preflight--failed]="!starship()!.preFlightCheck!.passed">
+              <h2 class="starship-detail__section-title">
+                Pre-Flight Check
+                <span class="starship-detail__status-icon">
+                  {{ starship()!.preFlightCheck!.passed ? '✓' : '✗' }}
+                </span>
+              </h2>
+
+              <p class="starship-detail__status-text">
+                Status: 
+                <strong>
+                  {{ starship()!.preFlightCheck!.passed ? 'Flight Ready' : 'Attention Required' }}
+                </strong>
+              </p>
+
+              @if (starship()!.preFlightCheck!.warnings.length > 0) {
+                <div class="starship-detail__warnings-section">
+                  <h3>Warnings</h3>
+                  <ul class="starship-detail__warnings">
+                    @for (warning of starship()!.preFlightCheck!.warnings; track warning) {
+                      <li>{{ warning }}</li>
+                    }
+                  </ul>
+                </div>
+              }
+
+              @if (starship()!.preFlightCheck!.errors.length > 0) {
+                <div class="starship-detail__errors-section">
+                  <h3>Errors</h3>
+                  <ul class="starship-detail__errors">
+                    @for (error of starship()!.preFlightCheck!.errors; track error) {
+                      <li>{{ error }}</li>
+                    }
+                  </ul>
+                </div>
+              }
+            </section>
+          }
+        </aside>
+      </div>
+    </div>
+  }
+</div>

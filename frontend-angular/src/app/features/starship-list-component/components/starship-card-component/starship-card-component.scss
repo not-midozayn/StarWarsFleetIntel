@@ -1,0 +1,98 @@
+@use '../../../../../styles/abstracts' as *;
+
+.starship-card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: $color-gray-dark;
+  border-radius: $border-radius-md;
+  padding: $spacing-lg;
+  box-shadow: $shadow-md;
+  transition: transform $transition-base, box-shadow $transition-base;
+  cursor: pointer;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: $shadow-glow-hover;
+  }
+
+  &__name {
+    @include text-truncate;
+  }
+
+  &__model {
+    @include text-truncate;
+  }
+
+  &__body {
+    flex: 1;
+  }
+
+  &__info {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: $spacing-md;
+    margin-bottom: $spacing-md;
+  }
+
+  &__info-item {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__label {
+    font-size: $font-size-xs;
+    color: $color-text-muted;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: $spacing-xs;
+  }
+
+  &__value {
+    font-weight: 600;
+    color: $color-accent;
+
+    &--cost {
+      color: $color-primary;
+    }
+  }
+
+  &__modifications {
+    margin-top: $spacing-md;
+  }
+
+  &__badge {
+    display: inline-block;
+    padding: $spacing-xs $spacing-sm;
+    background-color: $color-gray;
+    border-radius: $border-radius-sm;
+    font-size: $font-size-xs;
+    color: $color-accent;
+    border: 1px solid $color-accent;
+  }
+
+  &__preflight {
+    display: flex;
+    align-items: center;
+    gap: $spacing-sm;
+    margin-top: $spacing-md;
+    padding: $spacing-sm;
+    border-radius: $border-radius-sm;
+    font-size: $font-size-sm;
+    font-weight: 600;
+
+    &--passed {
+      background-color: rgba($color-success, 0.1);
+      color: $color-success;
+    }
+
+    &--failed {
+      background-color: rgba($color-error, 0.1);
+      color: $color-error;
+    }
+  }
+
+  &__preflight-icon {
+    font-size: $font-size-lg;
+  }
+}

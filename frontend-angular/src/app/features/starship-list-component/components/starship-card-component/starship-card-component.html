@@ -1,0 +1,65 @@
+<article class="starship-card card card--hover-glow card--clickable" (click)="onCardClick($event)">
+  <div class="starship-card__header card__header">
+    <h3 class="starship-card__name card__title">{{ starship.name }}</h3>
+    <p class="starship-card__model card__subtitle">{{ starship.model }}</p>
+  </div>
+
+  <div class="starship-card__body card__body">
+    <div class="starship-card__info">
+      <div class="starship-card__info-item">
+        <span class="starship-card__label">Manufacturer</span>
+        <span class="starship-card__value">{{ starship.manufacturer }}</span>
+      </div>
+
+      <div class="starship-card__info-item">
+        <span class="starship-card__label">Class</span>
+        <span class="starship-card__value">{{ starship.starshipClass }}</span>
+      </div>
+
+      <div class="starship-card__info-item">
+        <span class="starship-card__label">Crew</span>
+        <span class="starship-card__value">{{ starship.crew }}</span>
+      </div>
+
+      <div class="starship-card__info-item">
+        <span class="starship-card__label">Cost</span>
+        <span class="starship-card__value starship-card__value--cost">
+          {{ displayCost() }}
+        </span>
+      </div>
+    </div>
+
+    <!-- Modifications Badge -->
+    @if (starship.specialModifications && starship.specialModifications.length > 0) {
+      <div class="starship-card__modifications">
+        <span class="starship-card__badge">
+          ⚙️ {{ starship.specialModifications.length }} Modifications
+        </span>
+      </div>
+    }
+
+    <!-- Pre-flight Check Status -->
+    @if (starship.preFlightCheck) {
+      <div class="starship-card__preflight" 
+           [class.starship-card__preflight--passed]="starship.preFlightCheck.passed"
+           [class.starship-card__preflight--failed]="!starship.preFlightCheck.passed">
+        <span class="starship-card__preflight-icon">
+          {{ starship.preFlightCheck.passed ? '✓' : '✗' }}
+        </span>
+        <span class="starship-card__preflight-text">
+          {{ starship.preFlightCheck.passed ? 'Flight Ready' : 'Needs Attention' }}
+        </span>
+      </div>
+    }
+  </div>
+
+  <div class="starship-card__footer card__footer">
+    <button 
+      type="button"
+      class="btn btn--primary btn--small"
+      (click)="navigateToDetails()"
+    >
+      View Details
+    </button>
+  </div>
+</article>
