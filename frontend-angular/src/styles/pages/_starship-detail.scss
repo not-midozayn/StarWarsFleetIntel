@@ -1,0 +1,122 @@
+@use '../abstracts' as *;
+
+.starship-detail {
+  &__header {
+    text-align: center;
+    margin-bottom: $spacing-xl;
+    padding: $spacing-xl;
+    background: linear-gradient(135deg, $color-gray-dark 0%, $color-gray 100%);
+    border-radius: $border-radius-lg;
+    box-shadow: $shadow-lg;
+  }
+
+  &__name {
+    font-size: $font-size-xxl;
+    margin-bottom: $spacing-sm;
+    // @include glow-effect($color-primary);
+  }
+
+  &__model {
+    font-size: $font-size-lg;
+    color: $color-text-muted;
+  }
+
+  &__content {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: $spacing-xl;
+
+    @include respond-to(desktop) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__section {
+    background-color: $color-gray-dark;
+    padding: $spacing-lg;
+    border-radius: $border-radius-md;
+    box-shadow: $shadow-md;
+  }
+
+  &__section-title {
+    font-size: $font-size-lg;
+    margin-bottom: $spacing-md;
+    padding-bottom: $spacing-sm;
+    border-bottom: 2px solid $color-primary;
+  }
+
+  &__specs {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: $spacing-md;
+
+    @include respond-to(tablet) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__spec {
+    &-label {
+      font-size: $font-size-sm;
+      color: $color-text-muted;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: $spacing-xs;
+    }
+
+    &-value {
+      font-size: $font-size-base;
+      font-weight: 600;
+      color: $color-accent;
+    }
+  }
+
+  &__modifications {
+    list-style: none;
+
+    li {
+      padding: $spacing-sm;
+      margin-bottom: $spacing-sm;
+      background-color: $color-gray;
+      border-left: 3px solid $color-accent;
+      border-radius: $border-radius-sm;
+
+      &::before {
+        content: '⚙️ ';
+        margin-right: $spacing-xs;
+      }
+    }
+  }
+
+  &__preflight {
+    &--passed {
+      border-left: 4px solid $color-success;
+    }
+
+    &--failed {
+      border-left: 4px solid $color-error;
+    }
+  }
+
+  &__warnings,
+  &__errors {
+    list-style: none;
+    margin-top: $spacing-md;
+
+    li {
+      padding: $spacing-sm;
+      margin-bottom: $spacing-sm;
+      border-radius: $border-radius-sm;
+    }
+  }
+
+  &__warnings li {
+    background-color: rgba($color-warning, 0.1);
+    border-left: 3px solid $color-warning;
+  }
+
+  &__errors li {
+    background-color: rgba($color-error, 0.1);
+    border-left: 3px solid $color-error;
+  }
+}

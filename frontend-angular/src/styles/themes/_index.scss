@@ -1,0 +1,17 @@
+// Dark theme (default)
+@use '../abstracts' as *;
+
+:root {
+  --theme-primary: #{$color-primary};
+  --theme-secondary: #{$color-secondary};
+  --theme-background: #{$color-dark};
+  --theme-text: #{$color-text};
+}
+
+// Light theme (bonus feature)
+[data-theme="light"] {
+  --theme-primary: #1a1a1a;
+  --theme-secondary: #ffffff;
+  --theme-background: #f5f5f5;
+  --theme-text: #1a1a1a;
+}

@@ -1,0 +1,22 @@
+// 7-1 Pattern: Main entry point
+
+// 1. Abstracts
+@use 'abstracts' as *;
+
+// 2. Vendors (third-party styles)
+@use 'vendors';
+
+// 3. Base
+@use 'base';
+
+// 4. Layout
+@use 'layout';
+
+// 5. Components
+@use 'components';
+
+// 6. Pages
+@use 'pages';
+
+// 7. Themes
+@use 'themes';

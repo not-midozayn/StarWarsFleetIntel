@@ -1,0 +1,62 @@
+// Colors - Star Wars Theme
+$color-primary: #f6ff00;
+$color-secondary: #000000;
+$color-accent: #00d4ff;
+
+$color-dark: #fdfdfd;
+$color-gray-dark: #203257;
+$color-gray: #2a2a2a;
+$color-gray-light: #3a3a3a;
+$color-text: #ffffff;
+$color-text-muted: #cccccc;
+    
+// Status Colors
+$color-success: #4caf50;
+$color-warning: #ff9800;
+$color-error: #f44336;
+$color-info: #2196f3;
+
+// Spacing
+$spacing-xs: 0.25rem;
+$spacing-sm: 0.5rem;
+$spacing-md: 1rem;
+$spacing-lg: 1.5rem;
+$spacing-xl: 2rem;
+$spacing-xxl: 3rem;
+
+// Typography
+$font-family-primary: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+$font-family-heading: 'Star Jedi', 'Segoe UI', sans-serif;
+
+$font-size-xs: 0.75rem;
+$font-size-sm: 0.875rem;
+$font-size-base: 1rem;
+$font-size-lg: 1.25rem;
+$font-size-xl: 1.5rem;
+$font-size-xxl: 2rem;
+
+// Breakpoints
+$breakpoint-mobile: 576px;
+$breakpoint-tablet: 768px;
+$breakpoint-desktop: 992px;
+$breakpoint-wide: 1200px;
+
+// Transitions
+$transition-fast: 0.15s ease-in-out;
+$transition-base: 0.3s ease-in-out;
+$transition-slow: 0.5s ease-in-out;
+
+// Border Radius
+$border-radius-sm: 4px;
+$border-radius-md: 8px;
+$border-radius-lg: 12px;
+
+// Shadows
+$shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.3);
+$shadow-md: 0 4px 8px rgba(0, 0, 0, 0.4);
+$shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.5);
+$shadow-glow: 0 0 20px rgba(255, 232, 31, 0.5);
+$shadow-glow-hover: 0 0 5px rgba($color-text-muted, 0.9),
+                    0 0 10px rgba($color-text-muted, 0.7),
+                    0 0 20px rgba($color-text-muted, 0.5),
+                    inset 0 0 3px rgba($color-text-muted, 0.8);

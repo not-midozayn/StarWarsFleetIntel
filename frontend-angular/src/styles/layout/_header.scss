@@ -1,0 +1,54 @@
+.header {
+  background-color: $color-secondary;
+  border-bottom: 3px solid $color-primary;
+  padding: $spacing-lg 0;
+  box-shadow: $shadow-lg;
+
+  &__container {
+    @include flex-between;
+  }
+
+  &__logo {
+    margin: 0;
+    font-family: $font-family-heading;
+    font-size: $font-size-xl;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: $color-text;
+
+    a,
+    a:link,
+    a:visited {
+      color: $color-text !important;
+      text-decoration: none;
+      display: block;
+      transition: color $transition-base;
+    }
+      
+    a:hover,
+    a:active {
+      color: $color-accent !important;
+    }
+  }
+
+  &__nav {
+    display: flex;
+    gap: $spacing-lg;
+  }
+
+  &__link {
+    color: $color-text;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: color $transition-base;
+
+    &:hover {
+      color: $color-gray-dark;
+    }
+
+    &--active {
+      color: $color-gray-dark;
+    }
+  }
+}

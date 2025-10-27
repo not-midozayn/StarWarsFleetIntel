@@ -1,0 +1,14 @@
+.container {
+  width: 100%;
+  max-width: $breakpoint-wide;
+  margin: 0 auto;
+  padding: 0 $spacing-lg;
+
+  @include respond-to(tablet) {
+    padding: 0 $spacing-md;
+  }
+
+  &--fluid {
+    max-width: 100%;
+  }
+}
