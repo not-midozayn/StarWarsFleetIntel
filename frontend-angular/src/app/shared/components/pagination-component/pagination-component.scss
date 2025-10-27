@@ -1,0 +1,30 @@
+@use '../../../../styles/abstracts' as *;
+
+.pagination {
+  @include flex-center;
+  gap: $spacing-md;
+  flex-wrap: wrap;
+
+  &__pages {
+    display: flex;
+    gap: $spacing-sm;
+    align-items: center;
+  }
+
+  &__page {
+    min-width: 40px;
+    padding: $spacing-sm $spacing-md;
+  }
+
+  &__ellipsis {
+    color: $color-dark;
+    padding: 0 $spacing-sm;
+  }
+
+  &__btn {
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
+}

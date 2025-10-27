@@ -1,0 +1,57 @@
+<nav class="pagination" aria-label="Pagination">
+  <button
+    class="pagination__btn pagination__btn--prev btn btn--secondary"
+    [disabled]="!hasPrevious"
+    (click)="onPreviousClick()"
+    aria-label="Previous page"
+  >
+    ← Previous
+  </button>
+
+  <div class="pagination__pages">
+    @if (pages[0] > 1) {
+      <button
+        class="pagination__page btn btn--secondary"
+        (click)="onPageClick(1)"
+      >
+        1
+      </button>
+      @if (pages[0] > 2) {
+        <span class="pagination__ellipsis">...</span>
+      }
+    }
+
+    @for (page of pages; track page) {
+      <button
+        class="pagination__page btn"
+        [class.btn--primary]="page === currentPage"
+        [class.btn--secondary]="page !== currentPage"
+        [attr.aria-current]="page === currentPage ? 'page' : null"
+        (click)="onPageClick(page)"
+      >
+        {{ page }}
+      </button>
+    }
+
+    @if (pages[pages.length - 1] < totalPages) {
+      @if (pages[pages.length - 1] < totalPages - 1) {
+        <span class="pagination__ellipsis">...</span>
+      }
+      <button
+        class="pagination__page btn btn--secondary"
+        (click)="onPageClick(totalPages)"
+      >
+        {{ totalPages }}
+      </button>
+    }
+  </div>
+
+  <button
+    class="pagination__btn pagination__btn--next btn btn--secondary"
+    [disabled]="!hasNext"
+    (click)="onNextClick()"
+    aria-label="Next page"
+  >
+    Next →
+  </button>
+</nav>

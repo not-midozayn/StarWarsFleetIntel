@@ -1,0 +1,29 @@
+@use '../../../../styles/abstracts' as *;
+
+.loading-spinner {
+  @include flex-center;
+  flex-direction: column;
+  gap: $spacing-lg;
+  padding: $spacing-xxl;
+
+  &__spinner {
+    width: 60px;
+    height: 60px;
+    border: 4px solid $color-gray-light;
+    border-top-color: $color-primary;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+  }
+
+  &__message {
+    color: $color-text-muted;
+    font-size: $font-size-lg;
+    text-align: center;
+  }
+}

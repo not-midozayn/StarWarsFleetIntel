@@ -1,0 +1,36 @@
+@use '../../../../styles/abstracts' as *;
+
+.search-bar {
+  position: relative;
+  width: 100%;
+
+  &__input {
+    width: 100%;
+    padding: $spacing-md;
+    background-color: $color-gray;
+    border: 2px solid $color-gray-light;
+    border-radius: $border-radius-md;
+    color: $color-text;
+    font-size: $font-size-base;
+    transition: border-color $transition-base, box-shadow $transition-base;
+
+    &:focus {
+      outline: none;
+      border-color: $color-primary;
+      box-shadow: 0 0 0 3px rgba($color-primary, 0.2);
+    }
+
+    &::placeholder {
+      color: $color-text-muted;
+    }
+  }
+
+  &__icon {
+    position: absolute;
+    right: $spacing-md;
+    top: 50%;
+    transform: translateY(-50%);
+    color: $color-text-muted;
+    pointer-events: none;
+  }
+}
