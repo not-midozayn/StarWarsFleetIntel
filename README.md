@@ -4,8 +4,11 @@
 This will be a .NET backend that consumes SWAPI data and serves it to Angular frontend, showcasing Clean Architecture, design patterns, and modern .NET practices.
 
 ## Setup Instructions
-### Backend Setup
+you can skip the backend setup and just run the frontend because the backend project is deployed on a server
+but if you choose to setup the backend too, then don't forget to change the apiURL in 
+environment.development.ts from 'http://swapi.runasp.net/api' to https://localhost:7205/api
 
+### Backend Setup 
 1. **Clone the repository**
 ```bash
 git clone https://github.com/not-midozayn/StarWarsFleetIntel.git
