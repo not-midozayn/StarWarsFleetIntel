@@ -252,7 +252,7 @@ dotnet add package Microsoft.Extensions.Logging.Abstractions
 **Application/Mappings/StarshipMapping/Queries/StarshipMapping.cs:**
 
 
-### Step 3.7: Extentions (Cors Settings)
+### Step 3.7: Extentions (Add MediatR, AutoMapper, Validators Settings)
 **Application/DependencyInjection.cs:**
 
 
