@@ -32,8 +32,13 @@
             "styles": [
               "src/styles/main.scss"
             ],
+            "scripts": [
+
+            ],
             "stylePreprocessorOptions": {
-              "includePaths": ["src/styles"]
+              "includePaths": [
+                "src/styles"
+              ]
             },
             "poll": 1000
           },
@@ -91,11 +96,13 @@
                 "input": "public"
               }
             ],
-           "styles": [
+            "styles": [
               "src/styles/main.scss"
             ],
             "stylePreprocessorOptions": {
-              "includePaths": ["src/styles"]
+              "includePaths": [
+                "src/styles"
+              ]
             }
           }
         }
