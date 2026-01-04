@@ -103,7 +103,7 @@ namespace StarWarsFleetIntel.Infrastructure.ExternalServices
                 {
                     Items = swapiResponse.Results,
                     PageNumber = page,
-                    PageSize = swapiResponse.Results.Count,
+                    PageSize = 10,
                     TotalCount = swapiResponse.Count
                 };
 
